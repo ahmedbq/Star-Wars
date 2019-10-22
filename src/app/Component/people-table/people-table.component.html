@@ -1,0 +1,25 @@
+<table fxFlexOffset="50%" *ngIf="people.length > 0">
+  <thead>
+    <th>NAME</th>
+    <th>HEIGHT</th>
+    <th>MASS</th>
+    <th>HAIR COLOR</th>
+    <th>SKIN COLOR</th>
+    <th>EYE COLOR</th>
+    <th>BIRTH YEAR</th>
+    <th>GENDER</th>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let person of people; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+      <td>{{person.name}}</td>
+      <td>{{person.height}}</td>
+      <td>{{person.mass}}</td>
+      <td>{{person.hair_color}}</td>
+      <td>{{person.skin_color}}</td>
+      <td>{{person.eye_color}}</td>
+      <td>{{person.birth_year}}</td>
+      <td>{{person.gender}}</td>
+    </tr>
+  </tbody>
+</table>
