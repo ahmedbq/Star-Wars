@@ -1,25 +1,62 @@
-<table fxFlexOffset="50%" *ngIf="people.length > 0">
-  <thead>
-    <th>NAME</th>
-    <th>HEIGHT</th>
-    <th>MASS</th>
-    <th>HAIR COLOR</th>
-    <th>SKIN COLOR</th>
-    <th>EYE COLOR</th>
-    <th>BIRTH YEAR</th>
-    <th>GENDER</th>
-  </thead>
 
-  <tbody>
-    <tr *ngFor="let person of people; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
-      <td>{{person.name}}</td>
-      <td>{{person.height}}</td>
-      <td>{{person.mass}}</td>
-      <td>{{person.hair_color}}</td>
-      <td>{{person.skin_color}}</td>
-      <td>{{person.eye_color}}</td>
-      <td>{{person.birth_year}}</td>
-      <td>{{person.gender}}</td>
-    </tr>
-  </tbody>
-</table>
+<div fxFlexOffset ="50%">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <table mat-table matSort [dataSource]="dataSource">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Height Column -->
+      <ng-container matColumnDef="height">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Height </th>
+        <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+      </ng-container>
+
+      <!-- Mass Column -->
+      <ng-container matColumnDef="mass">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mass </th>
+        <td mat-cell *matCellDef="let element"> {{element.mass}} </td>
+      </ng-container>
+
+      <!-- Hair Color Column -->
+      <ng-container matColumnDef="hair_color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hair Color </th>
+        <td mat-cell *matCellDef="let element"> {{element.hair_color}} </td>
+      </ng-container>
+
+      <!-- Skin Color Column -->
+      <ng-container matColumnDef="skin_color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Skin Color </th>
+        <td mat-cell *matCellDef="let element"> {{element.skin_color}} </td>
+      </ng-container>
+
+      <!-- Eye Color Column -->
+      <ng-container matColumnDef="eye_color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Eye Color </th>
+        <td mat-cell *matCellDef="let element"> {{element.eye_color}} </td>
+      </ng-container>
+
+      <!-- Birth Year Column -->
+      <ng-container matColumnDef="birth_year">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Birth Year </th>
+        <td mat-cell *matCellDef="let element"> {{element.birth_year}} </td>
+      </ng-container>
+
+      <!-- Gender Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
