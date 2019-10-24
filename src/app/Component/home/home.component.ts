@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { PeopleService } from '././Service/people.service';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +12,5 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
   }
-
-
-  //https://thesixbees.com/2016/06/27/10-inspiring-examples-of-complex-ui/
-  // getAllPeople() {
-  //   this.PeopleService.getAllPeople().subscribe(
-  //     https://www.metaltoad.com/blog/angular-5-making-api-calls-httpclient-service
-  //   );
-  // }
 
 }

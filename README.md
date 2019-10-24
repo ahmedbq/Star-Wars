@@ -37,3 +37,5 @@ Make sure you have the following:
   - @angular/forms
   - @angular/flex-layout
   - @angular/platform-browser/animations
+  - chart.js
+  - @types/chart.js

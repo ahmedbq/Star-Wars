@@ -18,6 +18,7 @@ import { HomeComponent } from './Component/home/home.component';
 import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
 import { PeopleService } from './Service/people.service';
 import { PeopleTableComponent } from './Component/people-table/people-table.component';
+import { GraphComponent } from './Component/graph/graph.component';
 
 
 
@@ -27,7 +28,8 @@ import { PeopleTableComponent } from './Component/people-table/people-table.comp
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    PeopleTableComponent
+    PeopleTableComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
