@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Chart } from 'chart.js';
-import { PeopleService } from '../../Service/people.service';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-graph',
@@ -9,23 +9,34 @@ import { PeopleService } from '../../Service/people.service';
 })
 export class GraphComponent implements OnInit {
 
-  key = 'results';
-  dataSource = [];
+  constructor() { }
+
+  @Input() graphData = new MatTableDataSource();
 
   namesX: string[];
   heightsY: number[];
   massesY: number[];
   chart: any;
 
-  constructor(private peopleService: PeopleService) { }
+  nameKey = 'name';
+  heightKey = 'height';
+  massKey = 'mass';
 
   ngOnInit() {
-    this.peopleService.getAllPeople().subscribe(res => this.dataSource = res[this.key]);
-    this.namesX = this.dataSource.map(item => item.name.toString());
-    this.heightsY = this.dataSource.map(item => item.height);
-    this.massesY = this.dataSource.map(item => item.mass);
+    // TODO: data dissappears
 
-    console.log("data size: " + this.dataSource.length);
+    console.log(this.graphData);
+    console.log(this.graphData.data);
+
+
+    // this.graphData.data.map(m => m[name]);
+
+    // this.namesX = this.graphData.data.map(item => item.name.toString());
+    // this.heightsY = this.graphData.data.map(item => item[this.heightKey]);
+    // this.massesY = this.graphData.data.map(item => item[this.massKey]);
+    // console.log(this.namesX);
+    // console.log(this.heightsY);
+    // console.log(this.massesY);
 
     this.chart = new Chart('canvas', {
       type: 'bar',

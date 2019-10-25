@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { PeopleService } from '../../Service/people.service';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -15,25 +14,23 @@ import { MatSort } from '@angular/material/sort';
 })
 export class PeopleTableComponent implements OnInit {
 
-  constructor(private peopleService: PeopleService) { }
+  constructor() { }
 
-  key = 'results';
   displayedColumns: string[] = ['name', 'height', 'mass', 'hair_color', 'skin_color', 'eye_color', 'birth_year', 'gender'];
 
-  dataSource = new MatTableDataSource();
+  @Input() peopleData = new MatTableDataSource();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
-    this.peopleService.getAllPeople().subscribe(res => this.dataSource.data = res[this.key]);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.peopleData.paginator = this.paginator;
+    this.peopleData.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.peopleData.filter = filterValue.trim().toLowerCase();
   }
 
 }
